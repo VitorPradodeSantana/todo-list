@@ -10,3 +10,4 @@ Este projeto tem o objetivo principal o uso da tecnologia REACT, este é o prime
 
 Decide fazer este projeto para começar a utilizar o REACT e entender como funciona o REACT as componentizações e a utilização dos hooks.
 
+![Layout do projeto](./src/img/projetoReact.png)
