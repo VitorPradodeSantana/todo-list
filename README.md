@@ -1,4 +1,4 @@
-#Lista de tarefas (todo-list)
+# Lista de tarefas (todo-list)
 
 Este projeto tem o objetivo de ser uma lista de tarefas, aonde o usuário pode criar uma nova tarefa, editar uma tarefa e excluir uma tarefa existente.
 
