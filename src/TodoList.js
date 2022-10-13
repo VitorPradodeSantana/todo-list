@@ -3,26 +3,30 @@ import ListaItens from './ListaItens'
 
 const TodoList = () => {
   const [tarefa, setTarefa] = useState('')
+  const [itemsList, setItemsList] = useState([])
 
-  const itens = []
+  function handleChangeInput(event) {
+    const inputTask = event.target.value
+    setTarefa(inputTask)
+  }
 
-  const enviaDados = e => {
-    e.preventDefault()
-    itens.push(tarefa)
-    console.log(itens)
+  function handleAddItemToList(event) {
+    event.preventDefault()
+    setItemsList([...itemsList, tarefa])
+    setTarefa('')
   }
 
   return (
     <div className="todoList">
       <header>
         <h4>Nova Tarefa:</h4>
-        <form onSubmit={enviaDados}>
+        <form onSubmit={handleAddItemToList}>
           <input
             type="text"
             name="nova-tarefa"
             id="nova-tarefa"
             value={tarefa}
-            onChange={e => setTarefa(e.target.value)}
+            onChange={handleChangeInput}
           />
           <input type="submit" name="btn-add" id="btn-add" />
         </form>
