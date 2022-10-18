@@ -1,27 +1,31 @@
 import { React, useState } from 'react'
-import TodoList from './TodoList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
-const ListaItens = () => {
-  const [itemsList, setItemsList] = useState([])
-  console.log(itemsList)
-
+const List = props => {
   return (
     <div>
       <ul className="lista">
-        {itemsList.map((item, index) => (
-          <li className="itemLista">
+        {props.itemsList.map((item, index) => (
+          <li className="itemLista" key={index}>
             <div>
               <input type="checkbox" name="check" id="check" />
-              <p key={index}>{item}</p>
             </div>
+            <p>{item}</p>
             <div>
-              <button>
+              <button
+                onClick={() => {
+                  props.editarElemento(index, item)
+                }}
+              >
                 <FontAwesomeIcon icon={faPencil} />
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  props.childToParent(index)
+                }}
+              >
                 <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>
@@ -32,4 +36,4 @@ const ListaItens = () => {
   )
 }
 
-export default ListaItens
+export default List

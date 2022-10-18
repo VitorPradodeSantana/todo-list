@@ -1,9 +1,16 @@
 import { React, useState } from 'react'
-import ListaItens from './ListaItens'
+import List from './components/List'
 
 const TodoList = () => {
   const [tarefa, setTarefa] = useState('')
-  const [itemsList, setItemsList] = useState([])
+  let [itemsList, setItemsList] = useState([])
+  let [data, setData] = useState('')
+
+  const childToParent = index => {
+    itemsList.splice(index, 1)
+    console.log(itemsList)
+    setItemsList([...itemsList], itemsList)
+  }
 
   function handleChangeInput(event) {
     const inputTask = event.target.value
@@ -12,8 +19,29 @@ const TodoList = () => {
 
   function handleAddItemToList(event) {
     event.preventDefault()
+
+    if (!tarefa) {
+      return
+    }
+
     setItemsList([...itemsList, tarefa])
     setTarefa('')
+  }
+
+  function editarElemento(index, item) {
+    let input = document.getElementById('editar-elemento')
+    input.value = item
+  }
+
+  function salvar(e) {
+    e.preventDefault()
+
+    let input = document.getElementById('editar-elemento').value
+    setData(input)
+
+    console.log(data)
+
+    let index = itemsList.indexOf(input) + 1
   }
 
   return (
@@ -34,10 +62,14 @@ const TodoList = () => {
       <main className="princial-lista-itens">
         <p className="editar-iten">
           Edit:
-          <input type="text" name="" id="" />
-          <input type="submit" value="Save" id="" />
+          <input type="text" name="" id="editar-elemento" />
+          <input type="submit" value="Save" id="btn-save" onClick={salvar} />
         </p>
-        <ListaItens></ListaItens>
+        <List
+          itemsList={itemsList}
+          childToParent={childToParent}
+          editarElemento={editarElemento}
+        />
       </main>
     </div>
   )
